@@ -138,7 +138,13 @@ WebService::FindMyiPhone is a Perl interface to Apple's Find My iPhone service.
 
 =head2 new
 
+Takes named parameters. C<username> & C<password> are required. C<debug> is
+also available.
+
 =head2 update_devices
+
+Updates the information stored for all devices.  This includes location
+information for each device.
 
 =head2 get_devices_field( $field )
 
@@ -161,8 +167,8 @@ Retrieves an array ref array refs of specified fields' value for each device.
 
 =head2 get_device_by( $field => $value)
 
-L<WebService::FindMyiPhone::Device> object for the first device with $field
-set to $value.
+L<WebService::FindMyiPhone::Device> object for the first device with C<$field>
+set to C<$value>.
 
 =head1 DEVICE FIELDS
 
@@ -170,11 +176,46 @@ There are quite a few device fields but the ones you are likely to find most
 useful for identifying devices are C<name>, C<deviceModel>,
 C<deviceDisplayName>, C<rawDeviceModel>, C<modelDisplayName>, C<deviceClass>.
 
-c<name> is likely to be the most useful for identifying devices but multiple
+C<name> is likely to be the most useful for identifying devices but multiple
 devices with the same name are possible and only the first found is returned
-by c<get_device_by>.  It seems that Apple returns devices by some order of
+by C<get_device_by>.  It seems that Apple returns devices by some order of
 recentness so if your old iPhone has the same name as the new one, you are
 likely to get the new one first.
+
+=head1 DEVICE OBJECTS
+
+Device objects are stored as a blessed hashref, the C<_parent> key is a
+reference to the L<WebService::FindMyiPhone> object that created it.  The rest
+of the keys are directly from Apple.  You are incouraged to inspect the data
+there and make use of anything interesting to you.
+
+=head2 Device Methods
+
+=head3 send_message( $sound, $message, $subject )
+
+Send a message to the device.  C<$sound> determines if a sound should be
+played with the message, a true value will cause a sound even if the phone or
+iPad is in silent mode.  C<$message> is the message to display.  C<$subject> is
+optional and defaults to 'Important Message'.
+
+=head3 remote_lock($passcode)
+
+Lock the device remotely and require C<$passcode> to unlock.
+
+=head3 location()
+
+Returns a hashref with location data.  Keys include C<latitude>, C<longitude>,
+C<horizontalAccuracy>, C<positionType>, C<isInaccurate>, C<isOld >,
+C<locationType>, C<locationFinished>, and C<timeStamp>.
+
+If <locationFinished> is false, the method will sleep 2 seconds, call the
+parent's C<update_devices> method and check again.  It will try up to 3 times
+and then return what it has.
+
+Possible values for C<positionType> are 'GPS' and 'Wifi'.
+
+C<timeStamp> is epoch time with milliseconds, divide by 1000 for standard time
+with milliseconds.
 
 =head1 AUTHOR
 
