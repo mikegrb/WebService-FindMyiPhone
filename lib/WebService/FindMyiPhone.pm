@@ -13,6 +13,9 @@ use WebService::FindMyiPhone::Device;
 
 use Data::Dumper;    # TODO: remove
 
+my $post_data
+    = '{"clientContext":{"appName":"FindMyiPhone","appVersion":"1.4","buildVersion":"145","deviceUDID":"0000000000000000000000000000000000000000","inactiveTime":2147483647,"osVersion":"4.2.1","personID":0,"productType":"iPad1,1"}}';
+
 sub new {
     my ( $class, %args ) = @_;
 
@@ -42,21 +45,16 @@ sub new {
 
 sub _get_shard {
     my ($self) = @_;
-    my $data
-        = '{"clientContext":{"appName":"FindMyiPhone","appVersion":"1.4","buildVersion":"145","deviceUDID":"0000000000000000000000000000000000000000","inactiveTime":2147483647,"osVersion":"4.2.1","personID":0,"productType":"iPad1,1"}}';
-    my $response = $self->_post( '/initClient', $data );
+    my $response = $self->_post( '/initClient', $post_data );
     $self->{hostname} = $response->headers->header('X-Apple-MMe-Host');
     warn "User is on shard $self->{hostname}" if $self->{debug};
 }
 
 sub update_devices {
     my ($self) = @_;
-    my $data
-        = '{"clientContext":{"appName":"FindMyiPhone","appVersion":"1.4","buildVersion":"145","deviceUDID":"0000000000000000000000000000000000000000","inactiveTime":2147483647,"osVersion":"4.2.1","personID":0,"productType":"iPad1,1"}}';
-
     if ( @{ $self->{devices} } ) {
         my $new_device_data
-            = $self->_post( '/initClient', $data )->json->{content};
+            = $self->_post( '/initClient', $post_data )->json->{content};
         for my $device ( @{$new_device_data} ) {
             my $device_object = $self->get_device_by( id => $device->{id} );
             $device_object->_update_self($device);
@@ -64,7 +62,7 @@ sub update_devices {
     }
     else {
         $self->{devices}
-            = $self->_post( '/initClient', $data )->json->{content};
+            = $self->_post( '/initClient', $post_data )->json->{content};
         $_ = WebService::FindMyiPhone::Device->new( $self, $_ )
             for @{ $self->{devices} };
     }
@@ -91,7 +89,7 @@ sub _post {
         'X-Apple-Authscheme'    => ' UserIdGuest',
         'X-Apple-Realm-Support' => ' 1.0',
         'X-Client-Name'         => ' iPad',
-        'X-Client-UUID'         => ' 0cf3dc501ff812adb0b202baed4f37274b210853',
+        'X-Client-UUID'         => ' 0000000000000000000000000000000000000000',
         'Accept-Language'       => ' en-us',
     };
 
