@@ -11,8 +11,6 @@ use List::Util 'first';
 use Mojolicious;
 use WebService::FindMyiPhone::Device;
 
-use Data::Dumper;    # TODO: remove
-
 my $post_data
     = '{"clientContext":{"appName":"FindMyiPhone","appVersion":"1.4","buildVersion":"145","deviceUDID":"0000000000000000000000000000000000000000","inactiveTime":2147483647,"osVersion":"4.2.1","personID":0,"productType":"iPad1,1"}}';
 

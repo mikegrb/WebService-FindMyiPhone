@@ -8,7 +8,7 @@ our $VERSION = '0.01';
 
 use Carp;
 
-use Data::Dumper;    # TODO: remove
+# use Data::Dumper;    # TODO: remove
 
 sub new {
     my ( $class, $parent, $data ) = @_;
@@ -45,11 +45,11 @@ sub location {
     my ($self) = @_;
     my $count = 0;
     while ( !$self->{location}{locationFinished} ) {
-        print Dumper( $self->{location} );
+        # print Dumper( $self->{location} );
         sleep 2;
         $self->{_parent}->update_devices;
         last if ++$count >= 3;
-        warn "Sleeping and checking again";
+        # warn "Sleeping and checking again";
 
     }
     return $self->{location};
