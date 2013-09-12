@@ -1,0 +1,7 @@
+/WebService-FindMyiPhone-*
+/.build
+/_build*
+/Build
+MYMETA.*
+!META.json
+/.prove
