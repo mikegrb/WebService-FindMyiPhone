@@ -1,5 +1,5 @@
 {
-   "abstract" : "Blah blah blah",
+   "abstract" : "Perl interface to Apple's Find My iPhone service",
    "author" : [
       "Mike Greb <michael@thegrebs.com>"
    ],
