@@ -5,6 +5,13 @@ WebService::FindMyiPhone - Blah blah blah
 # SYNOPSIS
 
     use WebService::FindMyiPhone;
+    my $fmiphone = WebService::FindMyiPhone->new(
+        username => 'email@address',
+        password => 'YaakovLOVE',
+    );
+    my $iphone = $fmiphone->get_device_by( name => 'mmm cake');
+    my $location = $iphone->location();
+    $iphone->send_message(1, 'Where did I leave you?');
 
 # DESCRIPTION
 

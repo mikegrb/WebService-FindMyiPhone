@@ -1,6 +1,5 @@
-requires 'perl', '5.008005';
-
-# requires 'Some::Module', 'VERSION';
+requires 'perl', '5.010001';
+requires 'Mojolicious';
 
 on test => sub {
     requires 'Test::More', '0.88';

@@ -36,7 +36,8 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008005"
+            "Mojolicious" : "0",
+            "perl" : "5.010001"
          }
       },
       "test" : {
@@ -46,6 +47,20 @@
       }
    },
    "release_status" : "stable",
-   "version" : "0.01"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/mikegrb/WebService-FindMyiPhone/issues"
+      },
+      "homepage" : "https://github.com/mikegrb/WebService-FindMyiPhone",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/mikegrb/WebService-FindMyiPhone.git",
+         "web" : "https://github.com/mikegrb/WebService-FindMyiPhone"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "mikegrb <mgreb@linode.com>"
+   ]
 }
 
