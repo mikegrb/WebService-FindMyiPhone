@@ -34,7 +34,7 @@ sub new {
     };
     bless $self, $class;
 
-    $self->{ua}->name('Find iPhone/1.4 MeKit (iPad: iPhone OS/4.2.1)');
+    $self->{ua}->transactor->name('Find iPhone/1.4 MeKit (iPad: iPhone OS/4.2.1)');
     $self->_get_shard();
     $self->update_devices();
 
