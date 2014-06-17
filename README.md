@@ -50,7 +50,7 @@ Retrieves an array ref array refs of specified fields' value for each device.
 
 ## get\_device\_by( $field => $value)
 
-[WebService::FindMyiPhone::Device](http://search.cpan.org/perldoc?WebService::FindMyiPhone::Device) object for the first device with `$field`
+[WebService::FindMyiPhone::Device](https://metacpan.org/pod/WebService::FindMyiPhone::Device) object for the first device with `$field`
 set to `$value`.
 
 # DEVICE FIELDS
@@ -68,7 +68,7 @@ likely to get the new one first.
 # DEVICE OBJECTS
 
 Device objects are stored as a blessed hashref, the `_parent` key is a
-reference to the [WebService::FindMyiPhone](http://search.cpan.org/perldoc?WebService::FindMyiPhone) object that created it.  The rest
+reference to the [WebService::FindMyiPhone](https://metacpan.org/pod/WebService::FindMyiPhone) object that created it.  The rest
 of the keys are directly from Apple.  You are incouraged to inspect the data
 there and make use of anything interesting to you.
 
