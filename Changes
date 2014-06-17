@@ -1,6 +1,9 @@
 Revision history for WebService-FindMyiPhone
 
 {{$NEXT}}
+    - Depend on Mojolicious 4.50 (2013-10-22) and update Mojo::UserAgent->name
+    to UA->transactor->name reported by Ghislain Gaillot
+    - Test::Kwalitee for testing
 
 0.01  2013-09-12 03:38:45 EDT
-        - Initial release
+    - Initial release
